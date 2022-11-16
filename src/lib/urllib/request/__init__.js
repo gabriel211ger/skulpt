@@ -97,6 +97,14 @@ var $builtinmodule = function (name) {
 
     // ------------------------------------------------------------
     /**
+     * is used to set the authorization token for http requests.
+     */
+    request.setauthorization = new Sk.builtin.func(function (token) {
+        window.systemAuthorization = token;
+    });
+
+    // ------------------------------------------------------------
+    /**
      * Constructs and sends a Request. Returns Response object.
      *
      * http://docs.python-requests.org/en/latest/api/#requests.request
@@ -115,11 +123,19 @@ var $builtinmodule = function (name) {
 
             if (!data) {
                 xmlhttp.open("GET", url.v);
+                if(window.systemAuthorization != null)
+                {
+                    xmlhttp.setRequestHeader("Authorization", "Basic " + window.systemAuthorization);
+                }
                 xmlhttp.send(null);
             } else {
                 xmlhttp.open("POST", url.v);
                 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xmlhttp.setRequestHeader("Content-length", data.v.length);
+                if(window.systemAuthorization != null)
+                {
+                    xmlhttp.setRequestHeader("Authorization", "Basic " + window.systemAuthorization);
+                }
                 xmlhttp.send(data.v);
             }
         });
