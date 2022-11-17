@@ -26,10 +26,10 @@ var $builtinmodule = function(name) {
   
       // default stringify options
       stringify_opts = {
-        ascii      : true,
+        ascii      : false,
         separators : {
-          item_separator : ', ',
-          key_separator  : ': '
+          item_separator : ',',
+          key_separator  : ':'
         }
       };
   
