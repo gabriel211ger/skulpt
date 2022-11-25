@@ -67,7 +67,7 @@ var $builtinmodule = function (name) {
         service.export(fn);
         apply();
     }
-    mod.export = new Sk.builtin.func(exprt);
+    mod.export_to_file = new Sk.builtin.func(exprt);
 
 
     //Creates a new spreadsheet from json provided by an url and exports it to a local file.
