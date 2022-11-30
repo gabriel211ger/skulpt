@@ -13,9 +13,10 @@ var $builtinmodule = function (name) {
     }
 
     function apply() {
-        rootScope.$digest();
+        window.setTimeout(function(){
+            rootScope.$digest();
+        }, 10);
     }
-
 
     //Initializes the spreadsheet component. Use this if you need more then 2000 rows before calling any other spreadsheet function
     var initialize = function (sheetName, numberOfRows) {
