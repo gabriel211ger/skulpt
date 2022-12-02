@@ -157,7 +157,7 @@ var $builtinmodule = function (name) {
     mod.set_value = new Sk.builtin.func(set_value);
 
     var merge = function (sheetname, range) {
-        Sk.builtin.pyCheckArgs("merge", arguments, 3, 3, false, false);
+        Sk.builtin.pyCheckArgs("merge", arguments, 2, 2, false, false);
         init();
         service.getSheetByName(sheetname.v).range(range.v).merge();
         apply();
