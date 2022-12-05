@@ -130,8 +130,19 @@ var $builtinmodule = function (name) {
                 xmlhttp.send(null);
             } else {
                 xmlhttp.open("POST", url.v);
-                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xmlhttp.setRequestHeader("Content-length", data.v.length);
+                var ctSet = false;
+                //content type json detection 
+                try {
+                    var jsonObj = JSON.parse(data.v);
+                    //no error ocurred? this must be json
+                    xmlhttp.setRequestHeader("Content-type", "application/json");
+                    ctSet = true;
+                } catch (error) {
+                }
+                if(!ctSet) {
+                    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xmlhttp.setRequestHeader("Content-length", data.v.length);
+                }
                 if(window.systemAuthorization != null)
                 {
                     xmlhttp.setRequestHeader("Authorization", "Basic " + window.systemAuthorization);
